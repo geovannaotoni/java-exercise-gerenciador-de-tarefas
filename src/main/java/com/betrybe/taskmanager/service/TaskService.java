@@ -40,4 +40,21 @@ public class TaskService {
     }
     return allTasksDto;
   }
+
+  /**
+   * Gets task by id.
+   *
+   * @param id the id
+   * @return the task by id
+   */
+  public TaskDto getTaskById(String id) {
+    TaskModel taskModel = database.getTaskById(id);
+    return new TaskDto(
+        taskModel.getId(),
+        taskModel.getTitle(),
+        taskModel.getDescription(),
+        taskModel.getOwnerName(),
+        taskModel.getIsCompleted()
+    );
+  }
 }
