@@ -1,8 +1,10 @@
 package com.betrybe.taskmanager.service;
 
 import com.betrybe.taskmanager.database.TaskDatabaseInterface;
+import com.betrybe.taskmanager.dto.TaskCreationDto;
 import com.betrybe.taskmanager.dto.TaskDto;
 import com.betrybe.taskmanager.model.TaskModel;
+import com.betrybe.taskmanager.utils.ModelDtoConverter;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +32,7 @@ public class TaskService {
     List<TaskDto> allTasksDto = new ArrayList<>();
 
     for (TaskModel task : allTasks) {
-      allTasksDto.add(new TaskDto(
-          task.getId(),
-          task.getTitle(),
-          task.getDescription(),
-          task.getOwnerName(),
-          task.getIsCompleted())
-      );
+      allTasksDto.add(ModelDtoConverter.modelToDtoTask(task));
     }
     return allTasksDto;
   }
@@ -49,12 +45,21 @@ public class TaskService {
    */
   public TaskDto getTaskById(String id) {
     TaskModel taskModel = database.getTaskById(id);
-    return new TaskDto(
-        taskModel.getId(),
-        taskModel.getTitle(),
-        taskModel.getDescription(),
-        taskModel.getOwnerName(),
-        taskModel.getIsCompleted()
+    return ModelDtoConverter.modelToDtoTask(taskModel);
+  }
+
+  /**
+   * Create task task dto.
+   *
+   * @param newTask the new task
+   * @return the task dto
+   */
+  public String createTask(TaskCreationDto newTask) {
+    TaskModel taskModel = database.createTask(
+        newTask.title(),
+        newTask.description(),
+        newTask.ownerName()
     );
+    return ModelDtoConverter.modelToDtoTask(taskModel).id();
   }
 }
