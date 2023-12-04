@@ -67,4 +67,9 @@ public class TaskService {
     TaskModel updatedTask = database.setTaskAsCompleted(id);
     return  ModelDtoConverter.modelToDtoTask(updatedTask);
   }
+
+  public TaskDto removeTaskById(String id) {
+    TaskModel removedTask = database.removeTaskById(id);
+    return ModelDtoConverter.modelToDtoTask(removedTask);
+  }
 }
