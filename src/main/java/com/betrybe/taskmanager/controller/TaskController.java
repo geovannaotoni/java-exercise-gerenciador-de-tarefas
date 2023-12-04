@@ -5,6 +5,7 @@ import com.betrybe.taskmanager.dto.TaskDto;
 import com.betrybe.taskmanager.model.TaskModel;
 import com.betrybe.taskmanager.service.TaskService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,9 +37,18 @@ public class TaskController {
     return ResponseEntity.ok(allTasks);
   }
 
+  /**
+   * Gets task by id.
+   *
+   * @param id the id
+   * @return the task by id
+   */
   @GetMapping("/{id}")
-  public ResponseEntity<TaskDto> getTaskById(@PathVariable String id) {
-    TaskDto taskById = service.getTaskById(id);
+  public ResponseEntity<Optional<TaskDto>> getTaskById(@PathVariable String id) {
+    Optional<TaskDto> taskById = service.getTaskById(id);
+    if (taskById.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
     return ResponseEntity.ok(taskById);
   }
 

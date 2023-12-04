@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 
@@ -23,8 +24,8 @@ public class FakeTaskDatabase implements TaskDatabaseInterface {
   }
 
   @Override
-  public TaskModel getTaskById(String id) {
-    return tasks.get(id);
+  public Optional<TaskModel> getTaskById(String id) {
+    return Optional.ofNullable(tasks.get(id));
   }
 
   @Override

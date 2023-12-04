@@ -7,6 +7,7 @@ import com.betrybe.taskmanager.model.TaskModel;
 import com.betrybe.taskmanager.utils.ModelDtoConverter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,9 +44,12 @@ public class TaskService {
    * @param id the id
    * @return the task by id
    */
-  public TaskDto getTaskById(String id) {
-    TaskModel taskModel = database.getTaskById(id);
-    return ModelDtoConverter.modelToDtoTask(taskModel);
+  public Optional<TaskDto> getTaskById(String id) {
+    Optional<TaskModel> taskModel = database.getTaskById(id);
+    if (taskModel.isEmpty()) {
+      return Optional.empty();
+    }
+    return Optional.of(ModelDtoConverter.modelToDtoTask(taskModel.orElse(null)));
   }
 
   /**
