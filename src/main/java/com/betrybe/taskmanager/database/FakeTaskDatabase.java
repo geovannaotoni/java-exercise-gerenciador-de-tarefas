@@ -36,7 +36,7 @@ public class FakeTaskDatabase implements TaskDatabaseInterface {
 
   @Override
   public TaskModel setTaskAsCompleted(String id) {
-    tasks.get(id).setIsCompleted(null);
+    tasks.get(id).setIsCompleted(true);
     return tasks.get(id);
   }
 

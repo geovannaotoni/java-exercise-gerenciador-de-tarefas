@@ -62,4 +62,9 @@ public class TaskService {
     );
     return ModelDtoConverter.modelToDtoTask(taskModel).id();
   }
+
+  public TaskDto setTaskAsCompleted(String id) {
+    TaskModel updatedTask = database.setTaskAsCompleted(id);
+    return  ModelDtoConverter.modelToDtoTask(updatedTask);
+  }
 }
