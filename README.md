@@ -9,13 +9,13 @@ Para instalar as dependências do projeto, execute o comando `mvn install`.
 Isso fará o download das dependências configuradas no `pom.xml`, além de baixar as dependências indiretas.
 
 ## ✅ Funcionalidades Implementadas
-### (1) Endpoint GET `/tasks` para retornar todos as tarefas
+### (1) Endpoint GET `/tasks` para retornar todas as tarefas
 
 ### (2) Endpoint GET `/tasks/{id}` para retornar a tarefa com determinado id
 
 ### (3) Endpoint POST `/tasks` para criar uma nova tarefa
 
-### (4) Endpoint PUT `/tasks/{id}` para alterar o status da tarefa para 'Concluída
+### (4) Endpoint PUT `/tasks/{id}` para alterar o status da tarefa para 'Concluída'
 
 ### (5) Endpoint DELETE `/tasks/{id}` para a remoção de tarefas
 
